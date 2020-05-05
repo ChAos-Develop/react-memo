@@ -2,6 +2,12 @@
 
 var _express = _interopRequireDefault(require("express"));
 
+var _http = _interopRequireDefault(require("http"));
+
+var _https = _interopRequireDefault(require("https"));
+
+var _fs = _interopRequireDefault(require("fs"));
+
 var _path = _interopRequireDefault(require("path"));
 
 var _webpackDevServer = _interopRequireDefault(require("webpack-dev-server"));
@@ -22,9 +28,19 @@ var _routes = _interopRequireDefault(require("./routes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var sslOption = {
+  ca: _fs["default"].readFileSync('C:/ssl/swift.kro.kr/ca.cer'),
+  key: _fs["default"].readFileSync('C:/ssl/swift.kro.kr/swift.kro.kr.key'),
+  cert: _fs["default"].readFileSync('C:/ssl/swift.kro.kr/fullchain.cer')
+};
 var app = (0, _express["default"])();
 var port = 3000;
 var devPort = 4000;
+
+_http["default"].createServer(app).listen(80);
+
+_https["default"].createServer(sslOption, app).listen(443);
+
 var contentsPath = process.env.NODE_ENV === 'production' ? 'build' : 'public';
 app.use((0, _cors["default"])());
 app.use((0, _morgan["default"])('dev'));

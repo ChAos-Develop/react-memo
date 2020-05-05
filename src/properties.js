@@ -1,0 +1,1 @@
+export const API_SERVER = "http://funkyworld.duckdns.org:30000";

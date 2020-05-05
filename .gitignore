@@ -1,0 +1,5 @@
+.jshintrc
+.tern-project
+node_modules
+.vscode
+build

@@ -1,4 +1,7 @@
 import express from 'express';
+import http from 'http';
+import https from 'https';
+import fs from 'fs';
 import path from 'path'
 
 import WebpackDevServer from 'webpack-dev-server';
@@ -13,9 +16,19 @@ import cors from 'cors';
 
 import api from './routes';
 
+const sslOption = {
+    ca: fs.readFileSync('C:/ssl/swift.kro.kr/ca.cer'),
+    key: fs.readFileSync('C:/ssl/swift.kro.kr/swift.kro.kr.key'),
+    cert: fs.readFileSync('C:/ssl/swift.kro.kr/fullchain.cer')
+}
+
 const app = express();
 const port = 3000;
 const devPort = 4000;
+
+http.createServer(app).listen(80);
+https.createServer(sslOption, app).listen(443);
+
 const contentsPath = (process.env.NODE_ENV === 'production') ? 'build' : 'public';
 
 app.use(cors());

@@ -25,7 +25,7 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
     (
         <Provider store={store}>
-            <BrowserRouter basename="react-memo">
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Route path="/" component={App} />
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />

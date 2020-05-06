@@ -137,7 +137,7 @@ class Memo extends Component {
         };
 
         const update = JSON.stringify(current) !== JSON.stringify(next);
-        return update
+        return update;
     }
 
     render() {
@@ -224,7 +224,7 @@ class Memo extends Component {
 
         return (
             <div className="container memo">
-                { memoState.get('editMode') ? editView : memoView }
+                { (memoState.get('editMode') && ownership == true) ? editView : memoView }
             </div>
         );
     }

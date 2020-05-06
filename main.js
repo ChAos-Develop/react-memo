@@ -30,7 +30,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var whiteList = ['http://localhost:4000', 'https://chaos-develop.github.io/'];
 var corsOption = {
-  origin: ['http://127.0.0.1:4000', 'https://chaos-develop.github.io/'],
+  origin: ['http://localhost:4000', 'http://localhost:3000', 'https://chaos-develop.github.io/'],
   // origin: function(origin, callback) {
   //     if (whiteList.indexOf(origin) !== -1) {
   //         callback(null, true);

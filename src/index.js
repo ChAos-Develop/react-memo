@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from 'reducers';
 import thunk from 'redux-thunk';
+import { CONTEXT_PATH } from 'properties';
 
 import { App, Home, Login, Register, Wall } from 'containers';
 
@@ -25,7 +26,7 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
     (
         <Provider store={store}>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <BrowserRouter basename={CONTEXT_PATH}>
                 <Route path="/" component={App} />
                 <Route exact path="/" component={Home} />
                 <Route path="/login" component={Login} />

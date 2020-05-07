@@ -18,6 +18,8 @@ import {
 } from './ActionTypes';
 import { API_SERVER } from 'properties';
 
+axios.defaults.withCredentials = true;
+
 /* MEMO LIST */
 export function memoListRequest(isInitial, listType, id, username) {
     return (dispatch) => {

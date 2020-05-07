@@ -85,6 +85,11 @@ module.exports = {
             template: './public/index.html', // public/index.html 파일을 읽는다.
             filename: 'index.html', // output으로 출력할 파일은 index.html 이다.
             inject: false
+        }),
+        new HtmlWebPackPlugin({
+            template: './public/404.html', // public/index.html 파일을 읽는다.
+            filename: '404.html', // output으로 출력할 파일은 index.html 이다.
+            inject: false
         })
     ]
 };

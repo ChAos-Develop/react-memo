@@ -16,6 +16,22 @@ import cors from 'cors';
 
 import api from './routes';
 
+const whiteList = ['http://localhost:4000', 'http://localhost:3000', 'https://chaos-develop.github.io'];
+const corsOption = {
+    origin: function(origin, callback) {
+        // allow requests with no origin 
+        // (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (whiteList.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('CORS error'));
+        }
+    },
+    credentials: true
+}
+
 const sslOption = {
     ca: fs.readFileSync('C:/ssl/swift.kro.kr/ca.cer'),
     key: fs.readFileSync('C:/ssl/swift.kro.kr/swift.kro.kr.key'),
@@ -27,11 +43,11 @@ const port = 3000;
 const devPort = 4000;
 
 http.createServer(app).listen(80);
-https.createServer(sslOption, app).listen(443);
+https.createServer(sslOption, app).listen(30000);
 
 const contentsPath = (process.env.NODE_ENV === 'production') ? 'build' : 'public';
 
-app.use(cors());
+app.use(cors(corsOption));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
@@ -64,6 +80,7 @@ app.get('*', (req, res) => {
 });
 
 app.use(function(err, req, res, next) {
+    console.error(req.hostname);
     console.error(err.stack);
     res.status(500).send('Something broken!');
 });

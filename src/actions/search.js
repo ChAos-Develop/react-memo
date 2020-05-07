@@ -6,6 +6,8 @@ import {
 } from './ActionTypes';
 import { API_SERVER } from 'properties';
 
+axios.defaults.withCredentials = true;
+
 export function getUserSearchRequest(keyword) {
     return (dispatch) => {
         // inform Get Status API is starting

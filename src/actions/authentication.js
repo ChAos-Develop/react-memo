@@ -13,6 +13,8 @@ import {
 } from './ActionTypes';
 import { API_SERVER } from 'properties';
 
+axios.defaults.withCredentials = true;
+
 /*============================================================================
     authentication
 ==============================================================================*/

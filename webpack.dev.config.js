@@ -1,5 +1,7 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const properties = require('./src/properties');
 
 module.exports = {
     mode: 'development',
@@ -47,12 +49,14 @@ module.exports = {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('development'),
-                'PUBLIC_URL': JSON.stringify('react-memo')
-            }
-        })
+        new HtmlWebPackPlugin({
+            template: './public/index.html', // public/index.html 파일을 읽는다.
+            templateParameters: {
+                contextPath: properties.CONTEXT_PATH
+            },
+            filename: 'index.html', // output으로 출력할 파일은 index.html 이다.
+            inject: false,
+        }),
     ],
 
     module: {

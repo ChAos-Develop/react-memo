@@ -58,8 +58,8 @@ db.once('open', () => { console.log('Connected to mongodb server'); });
 // mongoose.connect('mongodb://username:password@host:port/database=');
 mongoose.connect('mongodb://localhost/codelab', {
     authSource: 'admin',
-    user: 'chaos',
-    pass: 'funkyworld#33',
+    user: '',
+    pass: '',
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
